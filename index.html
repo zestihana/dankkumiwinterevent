@@ -6,16 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, system-ui, "Noto Sans KR", sans-serif;
-      background-color: #ffffff; /* 은은한 배경 톤 */
-      color: #333333;
+      background-color: #ffffff;
+      color: #333;
       line-height: 1.4;
     }
 
@@ -30,25 +26,32 @@
     .banner-wrapper {
       width: 100%;
       overflow: hidden;
-      padding-top: 12px;
+      padding-top: 10px;
+      display: flex;
+      justify-content: center;
     }
 
     .banner-image {
       width: 100%;
-      height: auto;
-      display: block;
-      object-fit: cover;
+      height: 260px; /* PC 배너 높이 */
+      background-image: url("banner-main.png");
+      background-size: cover;        /* 양옆 크롭 */
+      background-position: center;   /* 중심 기준 */
+      border-radius: 12px;
     }
 
-    /* 모바일에서는 배너 가로 폭 줄이기 */
+    /* 모바일 크롭 느낌 강조 */
     @media (max-width: 768px) {
       .banner-image {
-        width: 90%;
-        margin: 0 auto;
+        width: 92%;        /* 가로 줄이기 */
+        height: 200px;     /* 모바일 높이 */
+        background-size: cover;
+        background-position: center;
+        border-radius: 14px;
       }
     }
 
-    /* 본문 영역 */
+    /* 본문 */
     .content-wrapper {
       width: 100%;
       max-width: 880px;
@@ -57,81 +60,29 @@
       text-align: center;
     }
 
-    /* 안내 박스 디자인 */
+    /* 안내 박스 */
     .info-box {
       background-color: #ffffff;
-      border: 1px solid #dddddd;      /* 회색 테두리 */
-      border-radius: 18px;
+      border: 1px solid #d8d8d8;
+      border-radius: 16px;
       padding: 22px 18px 20px;
-      margin: 20px auto 28px;
+      margin: 22px auto 28px;
       max-width: 760px;
-      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.03);
-    }
-
-    .info-heading {
-      font-size: 0.8rem;
-      font-weight: 700;
-      margin-bottom: 6px;
-      color: #333333;
-    }
-
-    .info-sub {
-      font-size: 0.8rem;
-      color: #666666;
-      margin-bottom: 14px;
-    }
-
-    .info-divider {
-      border-top: 1px dashed #d2d6e0;
-      margin: 10px 0 14px;
-    }
-
-    .info-row {
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      gap: 8px;
-      font-size: 0.8rem;
-      margin-bottom: 6px;
-      text-align: left;
-    }
-
-    .info-label {
-      background-color: #f2f4fa;
-      color: #333333;
-      border-radius: 999px;
-      padding: 4px 10px;
-      font-size: 0.78rem;
-      font-weight: 600;
-      white-space: nowrap;
-    }
-
-    .info-text {
-      max-width: 520px;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.03);
+      font-size: 0.6rem;   /* 👉 더 작게 */
       line-height: 1.45;
+      text-align: center;
     }
 
-    .info-text strong {
+    .info-box strong {
       color: #ff7a00;
       font-weight: 700;
     }
 
-    .info-note {
-      margin-top: 10px;
-      font-size: 0.8rem;
-      color: #999999;
-      text-align: left;
-    }
-
-    .info-note span {
-      display: block;
-      margin-top: 2px;
-    }
-
-    /* 폼 iframe */
+    /* iframe */
     .iframe-container iframe {
       width: 100%;
-      min-height: 2200px;   /* 모바일 기준 */
+      min-height: 2200px;
       border: 0;
       display: block;
       margin-top: 20px;
@@ -139,7 +90,7 @@
 
     @media (min-width: 768px) {
       .iframe-container iframe {
-        min-height: 2600px; /* PC에서 넉넉하게 */
+        min-height: 2600px;
       }
     }
   </style>
@@ -148,31 +99,29 @@
 <body>
   <div class="page-wrapper">
 
-    <!-- 상단 배너 -->
+    <!-- 배너 -->
     <header class="banner-wrapper">
-      <img src="banner-main.png"
-           alt="단꿈e 1주년 기념 특별 사은품 증정 이벤트"
-           class="banner-image" />
+      <div class="banner-image"></div>
     </header>
 
-    <!-- 안내 + 폼 -->
     <main class="content-wrapper">
 
-      <!-- 안내 문구 카드 -->
+      <!-- 안내 문구 -->
       <section class="info-box" aria-label="사은품 안내">
 
-  12월, 종합 프리패스(12개월 수강권) 결제 고객분께<br />
-  <strong>단꿈아이 대모험 시리즈 2종</strong>이 지급될 예정입니다.<br />
-  하단 사은품 선택 항목에서<br />
-  <strong>수령을 희망하는 2종</strong>을 선택해 주세요.<br /><br />
+12월, 종합 프리패스(12개월 수강권) 결제 고객분께<br />
+<strong>단꿈아이 대모험 시리즈 2종</strong>이 지급될 예정입니다.<br />
+하단 사은품 선택 항목에서<br />
+<strong>수령을 희망하는 2종</strong>을 선택해 주세요.<br /><br />
 
-  선택하신 사은품은 <strong>1월 31일(토)</strong> 이후 순차 발송될 예정이며,<br />
-  정확한 배송을 위해 <strong>이름, 연락처, 주소</strong> 등<br />
-  정보를 정확하게 입력 부탁드립니다.<br /><br />
+선택하신 사은품은 <strong>1월 31일(토)</strong> 이후 순차 발송될 예정이며,<br />
+정확한 배송을 위해 <strong>이름, 연락처, 주소</strong> 등<br />
+정보를 정확하게 입력 부탁드립니다.<br /><br />
 
-  <span style="color:#ff6d48;">※ 주소지 오기입으로 인한 반송 건은 재발송 되지 않습니다.</span><br />
-  <span style="color:#ff6d48;">※ 결제일 이후 2주 이내에 입력해 주시기 바랍니다.</span>
-</section>
+<span style="color:#ff6d48;">※ 주소지 오기입으로 인한 반송 건은 재발송 되지 않습니다.</span><br />
+<span style="color:#ff6d48;">※ 결제일 이후 2주 이내에 입력해 주시기 바랍니다.</span>
+
+      </section>
 
       <!-- 신청 폼 -->
       <div class="iframe-container">
@@ -187,3 +136,4 @@
   </div>
 </body>
 </html>
+

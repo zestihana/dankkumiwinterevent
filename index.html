@@ -66,7 +66,7 @@
       margin: 16px auto 28px;
       max-width: 760px;
       box-shadow: 0 6px 14px rgba(0,0,0,0.03);
-      font-size: 0.78rem;   /* 글자 작게 */
+      font-size: 0.78rem;   /* 안내 글자 작게 */
       line-height: 1.45;
     }
 
@@ -76,18 +76,18 @@
     }
 
     /* ---------------- Form iframe ---------------- */
-    .iframe-container iframe {
+    .iframe-container {
       width: 100%;
-      min-height: 2200px;
-      border: 0;
-      margin-top: 20px;
-      display: block;
+      max-width: 880px;
+      margin: 0 auto;
     }
 
-    @media (min-width: 768px) {
-      .iframe-container iframe {
-        min-height: 2600px;
-      }
+    .iframe-container iframe {
+      width: 100%;
+      border: 0;
+      display: block;
+      height: 800px; /* 초기 기본 높이 (postMessage 오기 전까지) */
+      transition: height 0.25s ease;
     }
 
     /* ---------------- Bottom Decoration ---------------- */
@@ -109,6 +109,21 @@
       }
     }
   </style>
+
+  <!-- iframe 자동 높이 조절 스크립트 -->
+  <script>
+    window.addEventListener("message", function (event) {
+      // Apps Script 쪽에서 보내는 type 체크
+      if (!event.data || event.data.type !== "setHeight") return;
+
+      const iframe = document.getElementById("giftFormFrame");
+      if (!iframe) return;
+
+      // 너무 작게 잡히는 것 방지용 최소값 (필요시 조정 가능)
+      var newHeight = Math.max(event.data.height, 800);
+      iframe.style.height = newHeight + "px";
+    });
+  </script>
 </head>
 
 <body>
@@ -126,23 +141,22 @@
     <main class="content-wrapper">
 
       <section class="info-box">
+        12월, 종합 프리패스(12개월 수강권) 결제 고객분께<br />
+        <strong>단꿈아이 대모험 시리즈 2종</strong>이 지급될 예정입니다.<br />
+        하단 사은품 선택 항목에서<br />
+        <strong>수령을 희망하는 2종</strong>을 선택해 주세요.<br /><br />
 
-12월, 종합 프리패스(12개월 수강권) 결제 고객분께<br />
-<strong>단꿈아이 대모험 시리즈 2종</strong>이 지급될 예정입니다.<br />
-하단 사은품 선택 항목에서<br />
-<strong>수령을 희망하는 2종</strong>을 선택해 주세요.<br /><br />
+        선택하신 사은품은 <strong>1월 31일(토)</strong> 이후 순차 발송될 예정이며,<br />
+        정확한 배송을 위해 <strong>이름, 연락처, 주소</strong> 등<br />
+        정보를 정확하게 입력 부탁드립니다.<br /><br />
 
-선택하신 사은품은 <strong>1월 31일(토)</strong> 이후 순차 발송될 예정이며,<br />
-정확한 배송을 위해 <strong>이름, 연락처, 주소</strong> 등<br />
-정보를 정확하게 입력 부탁드립니다.<br /><br />
-
-<span style="color:#ff6d48;">※ 주소지 오기입으로 인한 반송 건은 재발송 되지 않습니다.</span><br />
-<span style="color:#ff6d48;">※ 결제일 이후 2주 이내에 입력해 주시기 바랍니다.</span>
-
+        <span style="color:#ff6d48;">※ 주소지 오기입으로 인한 반송 건은 재발송 되지 않습니다.</span><br />
+        <span style="color:#ff6d48;">※ 결제일 이후 2주 이내에 입력해 주시기 바랍니다.</span>
       </section>
 
       <div class="iframe-container">
         <iframe
+          id="giftFormFrame"
           src="https://script.google.com/macros/s/AKfycbwcQfEe_28waz6_DpaSVhzpQ2xzTtMyPHzPjb6liYHGdgcTcsj0nO0RLPuLG6ZGmL-I/exec"
           title="단꿈e 1주년 사은품 신청 폼">
         </iframe>

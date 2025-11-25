@@ -6,11 +6,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, system-ui, "Noto Sans KR", sans-serif;
-      background-color: #ffffff;
+      background-color: #f8f5f2;
       color: #333;
       line-height: 1.4;
     }
@@ -22,36 +26,37 @@
       align-items: stretch;
     }
 
-    /* 배너 영역 */
+    /* ---------------- 배너 영역 ---------------- */
     .banner-wrapper {
       width: 100%;
-      overflow: hidden;
-      padding-top: 10px;
+      padding: 10px 0 4px;
       display: flex;
       justify-content: center;
     }
 
-    .banner-image {
+    .banner-picture {
       width: 100%;
-      height: 260px; /* PC 배너 높이 */
-      background-image: url("banner-main.png");
-      background-size: cover;        /* 양옆 크롭 */
-      background-position: center;   /* 중심 기준 */
+      max-width: 960px;
+    }
+
+    .banner-picture img {
+      width: 100%;
+      height: auto;
+      display: block;
       border-radius: 12px;
     }
 
-    /* 모바일 크롭 느낌 강조 */
+    /* 모바일에서 살짝 더 카드 느낌 */
     @media (max-width: 768px) {
-      .banner-image {
-        width: 92%;        /* 가로 줄이기 */
-        height: 200px;     /* 모바일 높이 */
-        background-size: cover;
-        background-position: center;
-        border-radius: 14px;
+      .banner-wrapper {
+        padding-top: 10px;
+      }
+      .banner-picture {
+        max-width: 92%;
       }
     }
 
-    /* 본문 */
+    /* ---------------- 본문 영역 ---------------- */
     .content-wrapper {
       width: 100%;
       max-width: 880px;
@@ -69,7 +74,7 @@
       margin: 22px auto 28px;
       max-width: 760px;
       box-shadow: 0 6px 14px rgba(0,0,0,0.03);
-      font-size: 0.6rem;   /* 👉 더 작게 */
+      font-size: 0.8rem;   /* 👉 안내 문구 폰트 더 작게 */
       line-height: 1.45;
       text-align: center;
     }
@@ -79,10 +84,10 @@
       font-weight: 700;
     }
 
-    /* iframe */
+    /* ---------------- 폼 iframe ---------------- */
     .iframe-container iframe {
       width: 100%;
-      min-height: 2200px;
+      min-height: 2200px;   /* 모바일 기준 높이 */
       border: 0;
       display: block;
       margin-top: 20px;
@@ -90,7 +95,26 @@
 
     @media (min-width: 768px) {
       .iframe-container iframe {
-        min-height: 2600px;
+        min-height: 2600px; /* PC에서 넉넉하게 */
+      }
+    }
+
+    /* ---------------- 하단 바닥 이미지 ---------------- */
+    .footer-deco {
+      width: 100%;
+      height: 200px;
+      margin-top: 40px;
+      background-image: url("footer-bottom.png");
+      background-repeat: no-repeat;
+      background-position: center bottom;
+      background-size: contain;
+    }
+
+    @media (max-width: 768px) {
+      .footer-deco {
+        height: 150px;
+        margin-top: 32px;
+        background-size: contain;
       }
     }
   </style>
@@ -99,14 +123,20 @@
 <body>
   <div class="page-wrapper">
 
-    <!-- 배너 -->
+    <!-- 상단 배너 (PC/MO 자동 전환) -->
     <header class="banner-wrapper">
-      <div class="banner-image"></div>
+      <picture class="banner-picture">
+        <!-- 모바일 전용 배너 -->
+        <source media="(max-width: 768px)" srcset="banner-main-mo.png" />
+        <!-- PC 기본 배너 -->
+        <img src="banner-main.png" alt="단꿈e 1주년 기념 특별 사은품 증정 이벤트" />
+      </picture>
     </header>
 
+    <!-- 안내 + 폼 -->
     <main class="content-wrapper">
 
-      <!-- 안내 문구 -->
+      <!-- 안내 문구 (줄바꿈 고정) -->
       <section class="info-box" aria-label="사은품 안내">
 
 12월, 종합 프리패스(12개월 수강권) 결제 고객분께<br />
@@ -131,6 +161,9 @@
           loading="lazy">
         </iframe>
       </div>
+
+      <!-- 하단 바닥 데코 -->
+      <footer class="footer-deco" aria-hidden="true"></footer>
 
     </main>
   </div>

@@ -2,15 +2,15 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>단꿈e 1주년 사은품 신청</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, system-ui, "Noto Sans KR", sans-serif;
-      background-color: #ffffff;
+      background-color: #ffffff; /* 전체 배경 흰색 */
       color: #333;
       line-height: 1.4;
       overflow-x: hidden;
@@ -58,7 +58,7 @@
       text-align: center;
     }
 
-        .info-box {
+    .info-box {
       background-color: #ffffff;
       border: 1px solid #d8d8d8;
       border-radius: 16px;
@@ -87,14 +87,14 @@
       width: 100%;
       border: 0;
       display: block;
-      min-height: 2000px;  /* PC 기준 */
+      min-height: 2000px;  /* PC 기준 기본 높이 */
       transition: height 0.25s ease;
     }
 
     /* 모바일 */
     @media (max-width: 768px) {
       .iframe-container iframe {
-        min-height: 800px; /* 모바일 전용 */
+        min-height: 1250px; /* 모바일 전용 기본 높이 */
       }
     }
 
@@ -112,16 +112,28 @@
     }
   </style>
 
-  <!-- iframe 자동 높이 조절 -->
+  <!-- iframe 자동 높이 조절 + 제출 후 안내문 숨기기 -->
   <script>
+    // 🔸 form.html에서 보내는 높이 정보 처리 (type: setHeight)
     window.addEventListener("message", function (event) {
       if (!event.data || event.data.type !== "setHeight") return;
 
       const iframe = document.getElementById("giftFormFrame");
       if (!iframe) return;
 
-      const newHeight = Math.max(event.data.height, 600); 
+      // 너무 작게 세팅되는 것 방지용 최소값
+      const newHeight = Math.max(event.data.height, 600);
       iframe.style.height = newHeight + "px";
+    });
+
+    // 🔸 form.html에서 보내는 제출 완료 신호 처리 (type: formSubmitted)
+    window.addEventListener("message", function (event) {
+      if (!event.data || event.data.type !== "formSubmitted") return;
+
+      const infoBox = document.querySelector(".info-box");
+      if (infoBox) {
+        infoBox.style.display = "none";
+      }
     });
   </script>
 </head>
@@ -129,16 +141,18 @@
 <body>
   <div class="page-wrapper">
 
-    <!-- 상단 배너 -->
+    <!-- 상단 배너 (PC/MO 자동 전환) -->
     <header class="banner-wrapper">
       <picture class="banner-picture">
         <source media="(max-width: 768px)" srcset="banner-main-mo.png" />
-        <img src="banner-main.png" alt="단꿈e 1주년 기념 사은품 신청">
+        <img src="banner-main.png" alt="단꿈e 1주년 기념 특별 사은품 증정 이벤트" />
       </picture>
     </header>
 
     <!-- 안내 + 폼 -->
     <main class="content-wrapper">
+
+      <!-- 안내문구 박스 -->
       <section class="info-box">
         12월, 종합 프리패스(12개월 수강권) 결제 고객분께<br />
         <strong>단꿈아이 대모험 시리즈 2종</strong>이 지급될 예정입니다.<br />
@@ -152,7 +166,7 @@
         <span style="color:#ff6d48;">※ 주소지 오기입으로 인한 반송 건은 재발송 되지 않습니다.</span><br />
         <span style="color:#ff6d48;">※ 결제일 이후 2주 이내에 입력해 주시기 바랍니다.</span>
       </section>
-      
+
       <div class="iframe-container">
         <iframe
           id="giftFormFrame"
@@ -162,7 +176,7 @@
       </div>
 
       <footer class="footer-deco">
-        <img src="footer-bottom.png" alt="">
+        <img src="footer-bottom.png" alt="" />
       </footer>
 
     </main>
@@ -170,3 +184,4 @@
   </div>
 </body>
 </html>
+

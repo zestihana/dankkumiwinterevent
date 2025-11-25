@@ -54,24 +54,20 @@
       margin: 16px 0 12px;
     }
 
-    /* 반응형 iframe 래퍼 */
+    /* iframe 래퍼: 페이지 전체 스크롤만 사용 */
     .iframe-container {
-      position: relative;
       width: 100%;
-      padding-top: 140%; /* 모바일에서 여유 있게 */
-      overflow: hidden;
-      border-radius: 12px;
-      border: 1px solid #e5e5e5;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
-      background-color: #fafafa;
+      margin-top: 12px;
     }
 
+    /* 여기서 높이를 넉넉하게 잡아서
+       폼 전체가 보이도록 하고,
+       페이지 자체만 스크롤되게 함 */
     .iframe-container iframe {
-      position: absolute;
-      inset: 0;
       width: 100%;
-      height: 100%;
+      min-height: 1800px; /* 폼 길이에 따라 숫자 조정 */
       border: 0;
+      display: block;
     }
 
     @media (min-width: 768px) {
@@ -83,8 +79,8 @@
         font-size: 1.4rem;
       }
 
-      .iframe-container {
-        padding-top: 100%; /* PC에서는 좀 더 짧게 */
+      .iframe-container iframe {
+        min-height: 1500px; /* PC에서 필요하면 줄이거나 늘리기 */
       }
     }
 
@@ -99,19 +95,18 @@
   <div class="page-wrapper">
     <!-- 상단 메인 배너 -->
     <header class="banner-wrapper">
-      <!-- 업로드한 이미지 이름이 다르면 이 부분만 수정 -->
+      <!-- 업로드한 파일명이 다르면 이 부분만 변경 -->
       <img src="banner-main.png" alt="단꿈e 1주년 사은품 신청" class="banner-image" />
     </header>
 
     <!-- 본문: 설명 + 폼 -->
     <main class="content-wrapper">
-      <!-- 필요하면 텍스트 설명 추가 -->
-      <!--
+      <!-- 안내 텍스트 -->
       <h1 class="section-title">단꿈e 1주년 사은품 신청</h1>
       <p style="margin-bottom: 12px; font-size: 0.95rem; line-height: 1.6;">
-        신규 구매 회원 대상 사은품 신청 폼입니다. 아래 정보를 정확히 입력해 주세요.
+        단꿈e 1주년을 맞이하여 준비한 사은품 신청 페이지입니다.<br />
+        신규 구매 회원분들께서는 아래 정보를 정확히 입력해 주세요.
       </p>
-      -->
 
       <section aria-label="사은품 신청 폼">
         <div class="iframe-container">
@@ -126,3 +121,4 @@
   </div>
 </body>
 </html>
+

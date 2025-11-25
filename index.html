@@ -93,12 +93,14 @@
     /* ---------------- Bottom Decoration ---------------- */
     .footer-deco {
       width: 100%;
-      height: 120px; /* 높이 줄여서 자연스럽게 */
-      margin-top: 40px;
-      background-image: url("footer-bottom.png");
-      background-repeat: no-repeat;
-      background-position: center bottom;
-      background-size: contain;
+      margin-top: 40px; /* 버튼이랑 간격 */
+    }
+    
+    .footer-deco img {
+      display: block;
+      width: 100%;
+      max-width: 960px;  /* 배너랑 동일 폭 */
+      margin: 0 auto;
     }
 
     @media (max-width: 768px) {
@@ -146,7 +148,9 @@
         </iframe>
       </div>
 
-      <footer class="footer-deco"></footer>
+      <footer class="footer-deco">
+        <img src="footer-bottom.png" alt="" />
+      </footer>
 
     </main>
 

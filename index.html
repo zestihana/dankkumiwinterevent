@@ -10,7 +10,7 @@
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, system-ui, "Noto Sans KR", sans-serif;
-      background-color: #ffffff; /* 전체 배경 완전 흰색 */
+      background-color: #ffffff; /* 전체 배경 흰색 */
       color: #333;
       line-height: 1.4;
       overflow-x: hidden;
@@ -54,7 +54,7 @@
       width: 100%;
       max-width: 880px;
       margin: 0 auto;
-      padding: 20px 16px 260px; /* padding-bottom 추가 */
+      padding: 20px 16px 40px;  /* footer와 자연스럽게 연결 */
       text-align: center;
     }
 
@@ -66,7 +66,7 @@
       margin: 16px auto 28px;
       max-width: 760px;
       box-shadow: 0 6px 14px rgba(0,0,0,0.03);
-      font-size: 0.78rem;   /* 글자 더 작게 */
+      font-size: 0.78rem;   /* 글자 작게 */
       line-height: 1.45;
     }
 
@@ -92,22 +92,18 @@
 
     /* ---------------- Bottom Decoration ---------------- */
     .footer-deco {
-      position: fixed;
-      bottom: 0;
-      left: 0;
       width: 100%;
-      height: 200px;
+      height: 120px; /* 높이 줄여서 자연스럽게 */
+      margin-top: 40px;
       background-image: url("footer-bottom.png");
       background-repeat: no-repeat;
       background-position: center bottom;
       background-size: contain;
-      pointer-events: none;
-      z-index: 0;
     }
 
     @media (max-width: 768px) {
       .footer-deco {
-        height: 150px;
+        height: 100px; /* 모바일 더 낮게 */
       }
     }
   </style>
@@ -116,6 +112,7 @@
 <body>
   <div class="page-wrapper">
 
+    <!-- 상단 배너 (PC/MO 자동 전환) -->
     <header class="banner-wrapper">
       <picture class="banner-picture">
         <source media="(max-width: 768px)" srcset="banner-main-mo.png" />
@@ -123,6 +120,7 @@
       </picture>
     </header>
 
+    <!-- 안내 + 폼 -->
     <main class="content-wrapper">
 
       <section class="info-box">
@@ -147,11 +145,11 @@
           title="단꿈e 1주년 사은품 신청 폼">
         </iframe>
       </div>
+
+      <footer class="footer-deco"></footer>
+
     </main>
 
-    <footer class="footer-deco"></footer>
   </div>
 </body>
 </html>
-
-

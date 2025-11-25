@@ -6,17 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, system-ui, "Noto Sans KR", sans-serif;
-      background-color: #f8f5f2;
+      background-color: #ffffff; /* 전체 배경 완전 흰색 */
       color: #333;
       line-height: 1.4;
+      overflow-x: hidden;
     }
 
     .page-wrapper {
@@ -46,11 +43,7 @@
       border-radius: 12px;
     }
 
-    /* 모바일에서 살짝 더 카드 느낌 */
     @media (max-width: 768px) {
-      .banner-wrapper {
-        padding-top: 10px;
-      }
       .banner-picture {
         max-width: 92%;
       }
@@ -61,22 +54,20 @@
       width: 100%;
       max-width: 880px;
       margin: 0 auto;
-      padding: 20px 16px 32px;
+      padding: 20px 16px 260px; /* padding-bottom 추가 */
       text-align: center;
     }
 
-    /* 안내 박스 */
     .info-box {
       background-color: #ffffff;
       border: 1px solid #d8d8d8;
       border-radius: 16px;
-      padding: 22px 18px 20px;
-      margin: 22px auto 28px;
+      padding: 20px 16px;
+      margin: 16px auto 28px;
       max-width: 760px;
       box-shadow: 0 6px 14px rgba(0,0,0,0.03);
-      font-size: 0.8rem;   /* 👉 안내 문구 폰트 더 작게 */
+      font-size: 0.78rem;   /* 글자 더 작게 */
       line-height: 1.45;
-      text-align: center;
     }
 
     .info-box strong {
@@ -84,37 +75,39 @@
       font-weight: 700;
     }
 
-    /* ---------------- 폼 iframe ---------------- */
+    /* ---------------- Form iframe ---------------- */
     .iframe-container iframe {
       width: 100%;
-      min-height: 2200px;   /* 모바일 기준 높이 */
+      min-height: 2200px;
       border: 0;
-      display: block;
       margin-top: 20px;
+      display: block;
     }
 
     @media (min-width: 768px) {
       .iframe-container iframe {
-        min-height: 2600px; /* PC에서 넉넉하게 */
+        min-height: 2600px;
       }
     }
 
-    /* ---------------- 하단 바닥 이미지 ---------------- */
+    /* ---------------- Bottom Decoration ---------------- */
     .footer-deco {
+      position: fixed;
+      bottom: 0;
+      left: 0;
       width: 100%;
       height: 200px;
-      margin-top: 40px;
       background-image: url("footer-bottom.png");
       background-repeat: no-repeat;
       background-position: center bottom;
       background-size: contain;
+      pointer-events: none;
+      z-index: 0;
     }
 
     @media (max-width: 768px) {
       .footer-deco {
         height: 150px;
-        margin-top: 32px;
-        background-size: contain;
       }
     }
   </style>
@@ -123,21 +116,16 @@
 <body>
   <div class="page-wrapper">
 
-    <!-- 상단 배너 (PC/MO 자동 전환) -->
     <header class="banner-wrapper">
       <picture class="banner-picture">
-        <!-- 모바일 전용 배너 -->
         <source media="(max-width: 768px)" srcset="banner-main-mo.png" />
-        <!-- PC 기본 배너 -->
         <img src="banner-main.png" alt="단꿈e 1주년 기념 특별 사은품 증정 이벤트" />
       </picture>
     </header>
 
-    <!-- 안내 + 폼 -->
     <main class="content-wrapper">
 
-      <!-- 안내 문구 (줄바꿈 고정) -->
-      <section class="info-box" aria-label="사은품 안내">
+      <section class="info-box">
 
 12월, 종합 프리패스(12개월 수강권) 결제 고객분께<br />
 <strong>단꿈아이 대모험 시리즈 2종</strong>이 지급될 예정입니다.<br />
@@ -153,20 +141,17 @@
 
       </section>
 
-      <!-- 신청 폼 -->
       <div class="iframe-container">
         <iframe
           src="https://script.google.com/macros/s/AKfycbwcQfEe_28waz6_DpaSVhzpQ2xzTtMyPHzPjb6liYHGdgcTcsj0nO0RLPuLG6ZGmL-I/exec"
-          title="단꿈e 1주년 사은품 신청 폼"
-          loading="lazy">
+          title="단꿈e 1주년 사은품 신청 폼">
         </iframe>
       </div>
-
-      <!-- 하단 바닥 데코 -->
-      <footer class="footer-deco" aria-hidden="true"></footer>
-
     </main>
+
+    <footer class="footer-deco"></footer>
   </div>
 </body>
 </html>
+
 

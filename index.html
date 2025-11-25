@@ -16,9 +16,9 @@
       font-family: -apple-system, BlinkMacSystemFont, system-ui, "Noto Sans KR", sans-serif;
       background-color: #ffffff;
       color: #111111;
+      line-height: 1.6;
     }
 
-    /* 전체 레이아웃 */
     .page-wrapper {
       min-height: 100vh;
       display: flex;
@@ -26,7 +26,6 @@
       align-items: stretch;
     }
 
-    /* 상단 배너 */
     .banner-wrapper {
       width: 100%;
       overflow: hidden;
@@ -36,89 +35,105 @@
       width: 100%;
       height: auto;
       display: block;
-      max-height: 800px;
       object-fit: cover;
     }
 
-    /* 내용 영역 */
     .content-wrapper {
       width: 100%;
       max-width: 960px;
       margin: 0 auto;
-      padding: 16px;
+      padding: 32px 16px 40px;
+      text-align: center;
     }
 
-    .section-title {
+    .info-box {
+      background: #fff8e9;
+      border: 1px solid #ffd27f;
+      border-radius: 16px;
+      padding: 28px 20px;
+      margin: 24px auto 36px;
+      font-size: 1.05rem;
+      line-height: 1.75;
+      white-space: pre-line;
+    }
+
+    .info-box strong {
+      color: #ff7a00; /* 포인트 색 강조 */
+      font-weight: 700;
+    }
+
+    .highlight {
       font-size: 1.25rem;
-      font-weight: 600;
-      margin: 16px 0 12px;
+      font-weight: 700;
+      color: #ff7a00;
+      display: block;
+      margin-bottom: 12px;
     }
 
-    /* iframe 래퍼: 페이지 전체 스크롤만 사용 */
-    .iframe-container {
-      width: 100%;
-      margin-top: 12px;
-    }
-
-    /* 여기서 높이를 넉넉하게 잡아서
-       폼 전체가 보이도록 하고,
-       페이지 자체만 스크롤되게 함 */
     .iframe-container iframe {
       width: 100%;
-      min-height: 1800px; /* 폼 길이에 따라 숫자 조정 */
+      min-height: 2200px; /* 모바일 기준 */
       border: 0;
       display: block;
+      margin-top: 24px;
     }
 
     @media (min-width: 768px) {
-      .content-wrapper {
-        padding: 24px 16px 40px;
-      }
-
-      .section-title {
-        font-size: 1.4rem;
-      }
-
       .iframe-container iframe {
-        min-height: 1500px; /* PC에서 필요하면 줄이거나 늘리기 */
+        min-height: 2600px; /* PC에서 넉넉하게 */
       }
-    }
 
-    @media (min-width: 1200px) {
-      .content-wrapper {
-        max-width: 1080px;
+      .info-box {
+        font-size: 1.15rem;
+        padding: 36px 24px;
       }
     }
   </style>
 </head>
+
 <body>
   <div class="page-wrapper">
-    <!-- 상단 메인 배너 -->
+
+    <!-- 상단 배너 -->
     <header class="banner-wrapper">
-      <!-- 업로드한 파일명이 다르면 이 부분만 변경 -->
-      <img src="banner-main.png" alt="단꿈e 1주년 사은품 신청" class="banner-image" />
+      <img src="banner-main.png" alt="단꿈e 1주년 기념 특별 사은품 증정 이벤트" class="banner-image" />
     </header>
 
-    <!-- 본문: 설명 + 폼 -->
     <main class="content-wrapper">
-      <!-- 안내 텍스트 -->
-      <h1 class="section-title">단꿈e 1주년 사은품 신청</h1>
-      <p style="margin-bottom: 12px; font-size: 0.95rem; line-height: 1.6;">
-        단꿈e 1주년을 맞이하여 준비한 사은품 신청 페이지입니다.<br />
-        신규 구매 회원분들께서는 아래 정보를 정확히 입력해 주세요.
-      </p>
 
-      <section aria-label="사은품 신청 폼">
-        <div class="iframe-container">
-          <iframe
-            src="https://script.google.com/macros/s/AKfycbwcQfEe_28waz6_DpaSVhzpQ2xzTtMyPHzPjb6liYHGdgcTcsj0nO0RLPuLG6ZGmL-I/exec"
-            title="단꿈e 1주년 사은품 신청 폼"
-            loading="lazy">
-          </iframe>
-        </div>
-      </section>
+      <!-- 안내 문구 박스 -->
+      <div class="info-box">
+        <span class="highlight">🎉 12월 신규 결제 고객 특별 혜택 🎉</span>
+
+종합 프리패스 <strong>[12개월 수강권]</strong> 결제 고객분께
+<strong>단꿈아이 대모험 시리즈 2종</strong> 사은품을 드립니다!
+
+아래 사은품 선택 항목에서
+<strong>원하시는 2가지를 선택</strong>해 주세요.
+
+<strong>발송 일정</strong>
+선택하신 사은품은 <strong>1월 31일(토)</strong> 부터 순차 발송됩니다.
+
+<strong>정확한 배송을 위해</strong>
+이름 / 연락처 / 주소를 정확히 입력 부탁드립니다.
+
+⚠️ 주소 오기입으로 인한 반송은 재발송되지 않습니다.
+⚠️ 사은품 신청 입력은 <strong>결제일 이후 2주 이내</strong>에 완료해 주세요.
+      </div>
+
+      <div class="iframe-container">
+        <iframe
+          src="https://script.google.com/macros/s/AKfycbwcQfEe_28waz6_DpaSVhzpQ2xzTtMyPHzPjb6liYHGdgcTcsj0nO0RLPuLG6ZGmL-I/exec"
+          title="단꿈e 1주년 사은품 신청 폼"
+          loading="lazy">
+        </iframe>
+      </div>
+
     </main>
+
   </div>
 </body>
 </html>
+
+
 

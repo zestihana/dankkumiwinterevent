@@ -10,7 +10,7 @@
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, system-ui, "Noto Sans KR", sans-serif;
-      background-color: #ffffff; /* 전체 배경 흰색 */
+      background-color: #ffffff;
       color: #333;
       line-height: 1.4;
       overflow-x: hidden;
@@ -66,8 +66,10 @@
       margin: 16px auto 28px;
       max-width: 760px;
       box-shadow: 0 6px 14px rgba(0,0,0,0.03);
-      font-size: 0.78rem;   /* 안내 글자 작게 */
+      font-size: 0.78rem;
       line-height: 1.45;
+      /* 부드러운 사라짐 효과를 위해 transition 추가 (선택사항) */
+      transition: opacity 0.5s ease; 
     }
 
     .info-box strong {
@@ -82,19 +84,17 @@
       margin: 0 auto;
     }
 
-    /* PC 기본값 */
     .iframe-container iframe {
       width: 100%;
       border: 0;
       display: block;
-      min-height: 2000px;  /* PC 기준 기본 높이 */
+      min-height: 2000px;
       transition: height 0.25s ease;
     }
 
-    /* 모바일 */
     @media (max-width: 768px) {
       .iframe-container iframe {
-        min-height: 1250px; /* 모바일 전용 기본 높이 */
+        min-height: 1250px;
       }
     }
 
@@ -112,28 +112,30 @@
     }
   </style>
 
-  <!-- iframe 자동 높이 조절 + 제출 후 안내문 숨기기 -->
   <script>
-    // 🔸 form.html에서 보내는 높이 정보 처리 (type: setHeight)
+    // 1. iframe 높이 조절 (기존 기능)
     window.addEventListener("message", function (event) {
       if (!event.data || event.data.type !== "setHeight") return;
 
       const iframe = document.getElementById("giftFormFrame");
       if (!iframe) return;
 
-      // 너무 작게 세팅되는 것 방지용 최소값
       const newHeight = Math.max(event.data.height, 600);
       iframe.style.height = newHeight + "px";
     });
 
-    // 🔸 form.html에서 보내는 제출 완료 신호 처리 (type: formSubmitted)
+    // 2. 제출 완료 처리 (안내 박스 숨김 + 상단 이동)
     window.addEventListener("message", function (event) {
       if (!event.data || event.data.type !== "formSubmitted") return;
 
+      // (1) 안내 문구 박스 숨기기
       const infoBox = document.querySelector(".info-box");
       if (infoBox) {
         infoBox.style.display = "none";
       }
+
+      // (2) 페이지 최상단으로 부드럽게 이동
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   </script>
 </head>
@@ -141,7 +143,6 @@
 <body>
   <div class="page-wrapper">
 
-    <!-- 상단 배너 (PC/MO 자동 전환) -->
     <header class="banner-wrapper">
       <picture class="banner-picture">
         <source media="(max-width: 768px)" srcset="banner-main-mo.png" />
@@ -149,10 +150,8 @@
       </picture>
     </header>
 
-    <!-- 안내 + 폼 -->
     <main class="content-wrapper">
 
-      <!-- 안내문구 박스 -->
       <section class="info-box">
         12월, 종합 프리패스(12개월 수강권) 결제 고객분께<br />
         <strong>단꿈아이 대모험 시리즈 2종</strong>이 지급될 예정입니다.<br />
